@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Redis\Database;
+use aerows\Models;
 
 class Liquidacion extends Model
 {
@@ -14,7 +15,7 @@ class Liquidacion extends Model
     public $timestamps = false;
 
     public function detalle(){
-        return $this->hasMany('IPSLiquidacion\Models\DetalleLiquidacion','CONTROL');
+        return $this->hasMany(Models\DetalleLiquidacion::class,'CONTROL');
     }
 
     public function getLiquidacionAttribute(){

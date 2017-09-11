@@ -15,21 +15,25 @@ class AerolineasController extends Controller
                 . substr($cuil, 2,8) . "-"
                 . substr($cuil, 10,1);
             $beneficios = Models\Beneficio::
-                where("cuil","=",$cuilquiones)
-                ->where("habilitado","=", "S")
-                ->withCount("liquidaciones")
+                where("cuil",$cuilquiones)
+                //->where("habilitado","=", "S")
                 ->limit(1)
                 ->get();
+                    //->toSql();
         }else{
             return response(["status"=>400,"message"=>"Cuil incorrecto"],400);
         }
-        if(count($beneficios) > 0 ){
+        if(count($beneficios) > 0){
             return response( ["status"=>200,
                 "message"=>"",
-                "beneficiario" => true,
-                "nombre" => $beneficios[0]->nombrecompleto,
-                "cuil"=>$beneficios[0]->cuil,
-                "liquidaciones" => $beneficios->liquidaciones_count]);
+                "datos"=>[
+                    "beneficiario" => true,
+                    "nombre" => $beneficios[0]->nombrecompleto,
+                    "cuil"=>$beneficios[0]->CUIL,
+                    "habilitado"=>$beneficios[0]->HABILITADO
+                ]
+                ]
+            );
         }else{
             return response(["status"=>200, "message"=>"", "beneficiario" => false]);
         }

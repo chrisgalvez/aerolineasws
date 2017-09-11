@@ -41,7 +41,7 @@ class Beneficio extends Model
     }
 
     public function liquidaciones(){
-        return $this->hasMany('IPSLiquidacion\Models\Liquidacion','CONTROL');
+        return $this->hasMany(Models\Liquidacion::class,'CONTROL');
     }
 
     function getNombreCompletoAttribute(){

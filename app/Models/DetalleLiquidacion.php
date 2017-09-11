@@ -3,6 +3,7 @@
 namespace aerows\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use aerows\Models;
 
 class DetalleLiquidacion extends Model
 {
@@ -11,10 +12,10 @@ class DetalleLiquidacion extends Model
     public $primaryKey = 'ID';
 
     public function liquidacion(){
-        return $this->belongsTo('IPSLiquidacion\Models\Liquidacion','CONTROL');
+        return $this->belongsTo(Models\Liquidacion::class,'CONTROL');
     }
 
     function tipoCodigo(){
-        return $this->belongsTo('IPSLiquidacion\Models\TipoCodigo','CODIGO');
+        return $this->belongsTo(Models\TipoCodigo::class ,'CODIGO');
     }
 }
