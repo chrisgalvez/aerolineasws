@@ -13,4 +13,4 @@
 use aerows\Models;
 
 Route::get('/padron/{cuil}', 'AerolineasController@index');
-Route::get('/info',function (){ echo php_info(); });
+Route::get('/info',function (){ echo phpinfo(); });
